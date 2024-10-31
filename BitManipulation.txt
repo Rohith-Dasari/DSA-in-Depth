@@ -1,0 +1,52 @@
+public class BitManipulation {
+    
+    // Function to set a bit at a given position in a number
+    public static int setBit(int n, int pos) {
+        return n | (1 << pos);
+    }
+
+    // Function to unset (clear) a bit at a given position in a number
+    public static int unsetBit(int n, int pos) {
+        return n & ~(1 << pos);
+    }
+
+    // Function to flip (toggle) a bit at a given position in a number
+    public static void flipBit(int[] n, int pos) {
+        n[0] ^= (1 << pos);
+    }
+
+    // Function to check if a bit at a given position is set in a number
+    public static boolean isBitSet(int n, int pos) {
+        return (n & (1 << pos)) != 0;
+    }
+
+    // Function to check if a number is a power of two
+    public static boolean isPowerOfTwo(int n) {
+        return (n != 0) && ((n & (n - 1)) == 0);
+    }
+
+    public static void main(String[] args) {
+        int n = 15; // 1111 in binary
+        int pos = 1;
+        
+        // Testing unsetBit
+        n = unsetBit(n, pos); // Should change n to 13, which is 1101 in binary
+        System.out.println("After unsetting bit at position " + pos + ": " + n); // Output should be 13
+
+        // Testing setBit
+        n = setBit(n, pos); // Should change n to 15 again, which is 1111 in binary
+        System.out.println("After setting bit at position " + pos + ": " + n); // Output should be 15
+
+        // Testing flipBit
+        int[] nArray = {n};
+        flipBit(nArray, pos); // Should flip bit at position 1, changing n to 13
+        System.out.println("After flipping bit at position " + pos + ": " + nArray[0]); // Output should be 13
+
+        // Testing isBitSet
+        System.out.println("Is bit at position " + pos + " set? " + isBitSet(nArray[0], pos)); // Output should be false
+
+        // Testing isPowerOfTwo
+        System.out.println("Is " + nArray[0] + " a power of two? " + isPowerOfTwo(nArray[0])); // Output should be false
+        System.out.println("Is 16 a power of two? " + isPowerOfTwo(16)); // Output should be true
+    }
+}
